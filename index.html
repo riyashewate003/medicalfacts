@@ -11,7 +11,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f8f9fa; 
+      background-color: #f8f9fa;
       margin: 0;
     }
 
@@ -20,19 +20,21 @@
       padding: 50px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 800px;
+      display: flex;               
+      max-width: 900px;           
       width: 100%;
+    }
+
+    .fact-section {
+      flex: 1;                     
+      padding: 20px;               
     }
 
     h1 {
       color: #009688; 
       margin-bottom: 30px;
       font-size: 2.5em;
-    }
-
-    #fact-container {
-      margin-top: 40px;
+      text-align: center;         
     }
 
     .fact {
@@ -64,15 +66,16 @@
     }
 
     button {
-      background-color: #009688; 
+      background-color: #009688;
       color: white;
       padding: 14px 25px;
       border: none;
-      border-radius: 25px; 
+      border-radius: 25px;
       cursor: pointer;
-      margin: 0 10px;
+      margin-bottom: 10px;        
       transition: background-color 0.3s ease;
       font-weight: 600; 
+      width: 100%;                
     }
 
     button:hover {
@@ -82,31 +85,41 @@
 </head>
 <body>
   <div class="container">
-    <h1>Interesting Medical Facts</h1>
-    <button id="prev-fact">Previous Fact</button>
-    <button id="next-fact">Next Fact</button>
-    <div id="fact-container">
+
+    <div class="fact-section"> 
+      <h1>Interesting Medical Facts</h1>
+      <div id="fact-container">
         <div class="fact">
           <p class="fact-text">Loading Fact...</p>
         </div>
+      </div>
     </div>
+
+    <div class="fact-section">
+      <button id="prev-fact">Previous Fact</button>
+      <button id="next-fact">Next Fact</button>
+    </div>
+
   </div>
 
   <script>
     const factsData = [
       {
-        "fact": "Most medical terms have Greek or Latin roots.",
-        "explanation": "This is because ancient Greek and Roman physicians were pioneers in the field."
+        "fact": "The human heart beats about 100,000 times per day.",
+        "explanation": "This vital organ pumps blood throughout the body, delivering oxygen and nutrients.",
+        "example": null
       },
       {
-        "fact": "Medical terms are often constructed from word parts: prefixes, suffixes, and root words.",
-        "explanation": "Understanding these parts can help you decipher the meaning of unfamiliar terms."
+        "fact": "Red blood cells are created in the bone marrow.",
+        "explanation": "Bone marrow is responsible for producing the cells that make up our blood.",
+        "example": null
       },
       {
-        "fact": "\"A-\" usually means \"not\" or \"without\"",
-        "example": "asymptomatic (without symptoms)"
+        "fact": "The average adult brain weighs about 3 pounds.",
+        "explanation": "This complex organ controls our thoughts, movements, and bodily functions.",
+        "example": null
       },
-      // ... more facts ...
+      // ... add more facts here ...
     ];
 
     const factContainer = document.getElementById('fact-container');
@@ -118,40 +131,32 @@
     function showFact(index) {
       const factObj = factsData[index];
 
-      // Update the content of the .fact div
       factContainer.querySelector('.fact-text').textContent = factObj.fact;
+
+      // Handle explanation
+      let factExplanation = factContainer.querySelector('.fact-explanation');
       if (factObj.explanation) {
-        // Create/update the explanation paragraph
-        let factExplanation = factContainer.querySelector('.fact-explanation');
         if (!factExplanation) {
           factExplanation = document.createElement('p');
           factExplanation.classList.add('fact-explanation');
           factContainer.querySelector('.fact').appendChild(factExplanation);
         }
         factExplanation.textContent = factObj.explanation;
-      } else {
-        // Remove the explanation if it exists
-        const factExplanation = factContainer.querySelector('.fact-explanation');
-        if (factExplanation) {
-          factExplanation.remove();
-        }
+      } else if (factExplanation) {
+        factExplanation.remove();
       }
 
+      // Handle example
+      let factExample = factContainer.querySelector('.fact-example');
       if (factObj.example) {
-        // Create/update the example paragraph
-        let factExample = factContainer.querySelector('.fact-example');
         if (!factExample) {
           factExample = document.createElement('p');
           factExample.classList.add('fact-example');
           factContainer.querySelector('.fact').appendChild(factExample);
         }
         factExample.textContent = `Example: ${factObj.example}`;
-      } else {
-        // Remove the example if it exists
-        const factExample = factContainer.querySelector('.fact-example');
-        if (factExample) {
-          factExample.remove();
-        }
+      } else if (factExample) {
+        factExample.remove();
       }
 
       currentFactIndex = index;
@@ -174,5 +179,4 @@
   </script>
 </body>
 </html>
-
 
