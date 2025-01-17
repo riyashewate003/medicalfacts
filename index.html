@@ -90,7 +90,146 @@
   </div>
 
   <script>
-    // ... (Your JavaScript code from previous responses - No changes needed)
+    const factsData = [
+      {
+        "fact": "Most medical terms have Greek or Latin roots.",
+        "explanation": "This is because ancient Greek and Roman physicians were pioneers in the field."
+      },
+      {
+        "fact": "Medical terms are often constructed from word parts: prefixes, suffixes, and root words.",
+        "explanation": "Understanding these parts can help you decipher the meaning of unfamiliar terms."
+      },
+      {
+        "fact": "\"A-\" usually means \"not\" or \"without\"",
+        "example": "asymptomatic (without symptoms)"
+      },
+      {
+        "fact": "\"-itis\" means \"inflammation\"",
+        "example": "appendicitis (inflammation of the appendix)"
+      },
+      {
+        "fact": "\"Cardio-\" refers to the heart",
+        "example": "cardiology (study of the heart)"
+      },
+      {
+        "fact": "\"Gastro-\" relates to the stomach",
+        "example": "gastroenterology (study of the stomach and intestines)"
+      },
+      {
+        "fact": "\"Hepato-\" concerns the liver",
+        "example": "hepatitis (inflammation of the liver)"
+      },
+      {
+        "fact": "\"Neuro-\" pertains to the nervous system",
+        "example": "neurology (study of the nervous system)"
+      },
+      {
+        "fact": "\"Derma-\" means \"skin\"",
+        "example": "dermatology (study of the skin)"
+      },
+      {
+        "fact": "\"-ectomy\" means \"surgical removal\"",
+        "example": "appendectomy (surgical removal of the appendix)"
+      },
+      {
+        "fact": "\"-otomy\" indicates \"cutting into\"",
+        "example": "tracheotomy (cutting into the trachea)"
+      },
+      {
+        "fact": "\"-oscopy\" signifies \"visual examination\"",
+        "example": "colonoscopy (visual examination of the colon)"
+      },
+      {
+        "fact": "\"Hyper-\" means \"excessive\" or \"above normal\"",
+        "example": "hypertension (high blood pressure)"
+      },
+      {
+        "fact": "\"Hypo-\" signifies \"deficient\" or \"below normal\"",
+        "example": "hypoglycemia (low blood sugar)"
+      },
+      {
+        "fact": "\"Brady-\" refers to \"slow\"",
+        "example": "bradycardia (slow heart rate)"
+      },
+      {
+        "fact": "\"Tachy-\" means \"fast\"",
+        "example": "tachycardia (fast heart rate)"
+      },
+      {
+        "fact": "Eponyms are medical terms named after people",
+        "example": "Alzheimer's disease (after Alois Alzheimer)"
+      },
+      {
+        "fact": "Medical terminology is constantly evolving",
+        "explanation": "with new discoveries and advancements in medicine"
+      },
+      {
+        "fact": "Understanding basic medical terminology can empower patients",
+        "explanation": "to better communicate with their healthcare providers and comprehend their health conditions"
+      },
+      {
+        "fact": "Many online resources and medical dictionaries are available",
+        "explanation": "to help you learn and understand medical terms"
+      }
+    ];
+
+    const factContainer = document.getElementById('fact-container');
+    const prevButton = document.getElementById('prev-fact');
+    const nextButton = document.getElementById('next-fact');
+
+    let currentFactIndex = 0;
+
+    // Function to create and show a fact
+    function showFact(index) {
+      factContainer.innerHTML = ''; // Clear the container
+      const factObj = factsData[index];
+      if (factObj) {
+        const factElement = document.createElement('div');
+        factElement.classList.add('fact');
+
+        const factText = document.createElement('p');
+        factText.classList.add('fact-text');
+        factText.textContent = factObj.fact;
+        factElement.appendChild(factText);
+
+        if (factObj.explanation) {
+          const factExplanation = document.createElement('p');
+          factExplanation.classList.add('fact-explanation');
+          factExplanation.textContent = factObj.explanation;
+          factElement.appendChild(factExplanation);
+        }
+
+        if (factObj.example) {
+          const factExample = document.createElement('p');
+          factExample.classList.add('fact-example');
+          factExample.textContent = `Example: ${factObj.example}`;
+          factElement.appendChild(factExample);
+        }
+        factContainer.appendChild(factElement);
+      }
+      currentFactIndex = index;
+    }
+   
+
+    // Function to handle the "Next Fact" button
+    function showNextFact() {
+      let nextIndex = (currentFactIndex + 1) % factsData.length; // Wrap around
+      showFact(nextIndex);
+    }
+
+    // Function to handle the "Previous Fact" button
+    function showPrevFact() {
+      let prevIndex = (currentFactIndex - 1 + factsData.length) % factsData.length; // Wrap around
+      showFact(prevIndex);
+    }
+
+    // Show the first fact initially
+    showFact(currentFactIndex);
+
+    // Add event listeners to the buttons
+    prevButton.addEventListener('click', showPrevFact);
+    nextButton.addEventListener('click', showNextFact);
   </script>
 </body>
 </html>
+
