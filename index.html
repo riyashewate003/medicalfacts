@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medical Facts App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #fact-container {
+      margin-top: 20px;
+    }
+
+    .fact {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .fact-text {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .fact-explanation, .fact-example {
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Interesting Medical Facts</h1>
+    <div id="fact-container"></div>
+  </div>
+  <script>
+    const factsData = [
+      // ... (Your JSON data from the previous response goes here)
+    ];
+
+    const factContainer = document.getElementById('fact-container');
+
+    factsData.forEach(factObj => {
+      const factElement = document.createElement('div');
+      factElement.classList.add('fact');
+
+      const factText = document.createElement('p');
+      factText.classList.add('fact-text');
+      factText.textContent = factObj.fact;
+      factElement.appendChild(factText);
+
+      if (factObj.explanation) {
+        const factExplanation = document.createElement('p');
+        factExplanation.classList.add('fact-explanation');
+        factExplanation.textContent = factObj.explanation;
+        factElement.appendChild(factExplanation);
+      }
+
+      if (factObj.example) {
+        const factExample = document.createElement('p');
+        factExample.classList.add('fact-example');
+        factExample.textContent = `Example: ${factObj.example}`;
+        factElement.appendChild(factExample);
+      }
+
+      factContainer.appendChild(factElement);
+    });
+  </script>
+</body>
+</html>
+
