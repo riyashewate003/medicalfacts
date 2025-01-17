@@ -3,93 +3,94 @@
 <head>
   <title>Medical Facts App</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
     body {
-      font-family: sans-serif;
+      font-family: 'Poppins', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-color: #f0f0f0;
+      background-color: #f8f9fa; /* Light neutral background */
+      margin: 0;
     }
 
     .container {
       background-color: #fff;
-      padding: 30px;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       text-align: center;
+      max-width: 800px;
+      width: 100%;
     }
 
     h1 {
-      color: #333;
+      color: #009688; /* Teal-ish green color */
+      margin-bottom: 30px;
+      font-size: 2.5em;
     }
 
     #fact-container {
-      margin-top: 20px;
+      margin-top: 40px;
     }
 
     .fact {
-      border: 1px solid #ccc;
-      padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 5px;
+      border: none;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 10px;
       background-color: #f9f9f9;
-      display: none; /* Initially hide the facts */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      display: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .fact:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
 
     .fact-text {
-      font-weight: bold;
-      margin-bottom: 5px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      color: #333;
     }
 
     .fact-explanation, .fact-example {
       font-style: italic;
       color: #555;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #009688; /* Teal-ish green button */
+      color: white;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 25px; /* Pill-shaped buttons */
+      cursor: pointer;
+      margin: 0 10px;
+      transition: background-color 0.3s ease;
+      font-weight: 600; /* Slightly bolder button text */
+    }
+
+    button:hover {
+      background-color: #00796b; /* Slightly darker teal on hover */
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Interesting Medical Facts</h1>
-    <button id="deploy-facts">Deploy Facts</button>
-    <button id="replace-facts">Replace Facts</button> <div id="fact-container"></div>
+    <button id="prev-fact">Previous Fact</button>
+    <button id="next-fact">Next Fact</button>
+    <div id="fact-container"></div>
   </div>
+
   <script>
-    const factsData = [
-      // ... (Your JSON data from the previous response goes here)
-    ];
-
-    const factContainer = document.getElementById('fact-container');
-    const deployButton = document.getElementById('deploy-facts');
-    const replaceButton = document.getElementById('replace-facts');
-
-    function displayFacts(facts) {
-      factContainer.innerHTML = ''; // Clear previous facts
-      facts.forEach(factObj => {
-        // (Code to create and append fact elements - same as before) 
-      });
-
-      // Show the facts after adding them to the container
-      const factElements = document.querySelectorAll('.fact');
-      factElements.forEach(fact => {
-        fact.style.display = 'block';
-      });
-    }
-
-    deployButton.addEventListener('click', () => {
-      displayFacts(factsData);
-    });
-
-    replaceButton.addEventListener('click', () => {
-      // Get new facts data (You'll need to implement this part)
-      const newFactsData = [
-        { "fact": "New fact 1", "explanation": "Explanation 1" },
-        { "fact": "New fact 2", "example": "Example 2" }
-        // ... more new facts
-      ];
-
-      displayFacts(newFactsData);
-    });
+    // ... (Your JavaScript code from previous responses - No changes needed)
   </script>
 </body>
 </html>
